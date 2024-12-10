@@ -1,7 +1,7 @@
-#ifndef Drums_h
-#define Drums_h
+#ifndef DrumsOne_h
+#define DrumsOne_h
 
-#include "Accessory1.h"
+#include "AccessoryOne.h"
 
 #define stickXBytes	WII_UNUSED,     0,     0,   WII_UNUSED,        0,     0, WII_BYTE0,  WII_BIT0, WII_BIT5
 #define stickYBytes	WII_UNUSED,     0,     0,   WII_UNUSED,        0,     0, WII_BYTE1,  WII_BIT0, WII_BIT5
@@ -28,7 +28,7 @@
 #define orangeID 14
 #define greenID  18
   
-class Drums
+class DrumsOne
 {
 	public:
 	virtual void printInputsDrums(Stream& stream = Serial);

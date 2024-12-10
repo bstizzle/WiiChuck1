@@ -1,7 +1,7 @@
-#ifndef Classic_h
-#define Classic_h
+#ifndef ClassicOne_h
+#define ClassicOne_h
 
-#include "Accessory1.h"
+#include "AccessoryOne.h"
 
 #define joyXLeftBytes	WII_UNUSED,     0,     0,   WII_UNUSED,        0,     0, WII_BYTE0,  WII_BIT0, WII_BIT5
 #define joyXRightBytes	WII_BYTE0,   WII_BIT6,  WII_BIT7,    WII_BYTE1,     WII_BIT6,  WII_BIT7, WII_BYTE2,  WII_BIT7, WII_BIT7
@@ -28,7 +28,7 @@
 #define buttonZRBytes	WII_BYTE5,WII_BIT2,true
 #define buttonZLBytes	WII_BYTE5,WII_BIT7,true
 
-class Classic {
+class ClassicOne {
 public:
 	//Classic();
 	virtual void printInputsClassic(Stream& stream = Serial)=0;

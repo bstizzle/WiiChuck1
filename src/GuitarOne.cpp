@@ -1,58 +1,58 @@
-#include "Accessory1.h"
+#include "AccessoryOne.h"
 
-int  Accessory1::getStickXGuitar() {
+int  AccessoryOne::getStickXGuitar() {
 	return decodeInt(stickXBytes);
 }
 
-int  Accessory1::getStickYGuitar() {
+int  AccessoryOne::getStickYGuitar() {
 	return decodeInt(stickYBytes);
 }
 
-int  Accessory1::getWhammyBar() {
+int  AccessoryOne::getWhammyBar() {
 	return decodeInt(whammyBarBytes);
 }
 
-int  Accessory1::getPlusButtonGuitar() {
+int  AccessoryOne::getPlusButtonGuitar() {
 	return decodeBit(plusButtonBytes);
 }
 
-int  Accessory1::getMinusButtonGuitar() {
+int  AccessoryOne::getMinusButtonGuitar() {
 	return decodeBit(minusButtonBytes);
 }
 
-int  Accessory1::getPedalButton() {
+int  AccessoryOne::getPedalButton() {
 	return decodeBit(pedalButtonBytes);
 }
 
-int  Accessory1::getGreenButton() {
+int  AccessoryOne::getGreenButton() {
 	return decodeBit(greenButtonBytes);
 }
 
-int  Accessory1::getRedButton() {
+int  AccessoryOne::getRedButton() {
 	return decodeBit(redButtonBytes);
 }
 
-int  Accessory1::getYellowButton() {
+int  AccessoryOne::getYellowButton() {
 	return decodeBit(yellowButtonBytes);
 }
 
-int  Accessory1::getBlueButton() {
+int  AccessoryOne::getBlueButton() {
 	return decodeBit(blueButtonBytes);
 }
 
-int  Accessory1::getOrangeButton() {
+int  AccessoryOne::getOrangeButton() {
 	return decodeBit(orangeButtonBytes);
 }
 
-int  Accessory1::getStrumUp() {
+int  AccessoryOne::getStrumUp() {
 	return decodeBit(strumUpBytes);
 }
 
-int  Accessory1::getStrumDown() {
+int  AccessoryOne::getStrumDown() {
 	return decodeBit(strumDownBytes);
 }
 
-void Accessory1::getValuesGuitar(uint8_t * values){
+void AccessoryOne::getValuesGuitar(uint8_t * values){
 	values[0]=map(getWhammyBar(),0,255,0,256);
 	values[1]=0;
 	values[2]=0;
@@ -82,7 +82,7 @@ void Accessory1::getValuesGuitar(uint8_t * values){
 	}
 }
 
-void  Accessory1::printInputsGuitar(Stream& stream) {
+void  AccessoryOne::printInputsGuitar(Stream& stream) {
 	char st[100];
 	sprintf(st," stick x: %4d | stick y: %4d | whammy bar: %4d | Buttons: ",getStickXGuitar(),getStickYGuitar(),getWhammyBar());
 	stream.print(st);

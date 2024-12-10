@@ -1,28 +1,28 @@
-#include "Accessory1.h"
+#include "AccessoryOne.h"
 #include <Wire.h>
 
-Accessory1::Accessory1() {
-	type = NUNCHUCK;
+AccessoryOne::AccessoryOne() {
+	type = NUNCHUCKONE;
 }
 /**
  * Reads the device type from the controller
  */
-ControllerType Accessory1::getControllerType() {
+ControllerTypeOne AccessoryOne::getControllerTypeOne() {
 	return type;
 }
 
-ControllerType Accessory1::identifyController() {
+ControllerTypeOne AccessoryOne::identifyController() {
 	//Serial.println("Reading periph bytes");
 	_burstRead(0xfa);
 	//printInputs(Serial);
 
 	if (_dataarray[4] == 0x00)
 		if (_dataarray[5] == 0x00)
-			return NUNCHUCK; // nunchuck
+			return NUNCHUCKONE; // nunchuck
 
 	if (_dataarray[4] == 0x01)
 		if (_dataarray[5] == 0x01)
-			return WIICLASSIC; // Classic Controller
+			return WIICLASSICONE; // Classic Controller
 
 	if (_dataarray[0] == 0x00)
 		if (_dataarray[1] == 0x00)
@@ -30,7 +30,7 @@ ControllerType Accessory1::identifyController() {
 				if (_dataarray[3] == 0x20)
 					if (_dataarray[4] == 0x01)
 						if (_dataarray[5] == 0x03)
-							return GuitarHeroController; // Guitar Hero Controller
+							return GuitarHeroControllerOne; // Guitar Hero Controller
 
 	if (_dataarray[0] == 0x01)
 		if (_dataarray[1] == 0x00)
@@ -38,7 +38,7 @@ ControllerType Accessory1::identifyController() {
 				if (_dataarray[3] == 0x20)
 					if (_dataarray[4] == 0x01)
 						if (_dataarray[5] == 0x03)
-							return GuitarHeroWorldTourDrums; // Guitar Hero World Tour Drums
+							return GuitarHeroWorldTourDrumsOne; // Guitar Hero World Tour Drums
 
 	if (_dataarray[0] == 0x03)
 		if (_dataarray[1] == 0x00)
@@ -46,7 +46,7 @@ ControllerType Accessory1::identifyController() {
 				if (_dataarray[3] == 0x20)
 					if (_dataarray[4] == 0x01)
 						if (_dataarray[5] == 0x03)
-							return Turntable; // Guitar Hero World Tour Drums
+							return TurntableOne; // Guitar Hero World Tour Drums
 
 	if (_dataarray[0] == 0x00)
 		if (_dataarray[1] == 0x00)
@@ -54,7 +54,7 @@ ControllerType Accessory1::identifyController() {
 				if (_dataarray[3] == 0x20)
 					if (_dataarray[4] == 0x01)
 						if (_dataarray[5] == 0x11)
-							return DrumController; // Taiko no Tatsujin TaTaCon (Drum controller)
+							return DrumControllerOne; // Taiko no Tatsujin TaTaCon (Drum controller)
 
 	if (_dataarray[0] == 0xFF)
 		if (_dataarray[1] == 0x00)
@@ -62,12 +62,12 @@ ControllerType Accessory1::identifyController() {
 				if (_dataarray[3] == 0x20)
 					if (_dataarray[4] == 0x00)
 						if (_dataarray[5] == 0x13)
-							return DrawsomeTablet; // Drawsome Tablet
+							return DrawsomeTabletOne; // Drawsome Tablet
 
-	return Unknown;
+	return UnknownOne;
 }
 
-void Accessory1::sendMultiSwitch(uint8_t iic, uint8_t sw) {
+void AccessoryOne::sendMultiSwitch(uint8_t iic, uint8_t sw) {
 	uint8_t err = 0;
 	int i = 0;
 	for (; i < 10; i++) {
@@ -85,7 +85,7 @@ void Accessory1::sendMultiSwitch(uint8_t iic, uint8_t sw) {
 
 }
 
-void Accessory1::addMultiplexer(uint8_t iic, uint8_t sw) {
+void AccessoryOne::addMultiplexer(uint8_t iic, uint8_t sw) {
 	if (sw >= 8)
 		return;
 
@@ -93,13 +93,13 @@ void Accessory1::addMultiplexer(uint8_t iic, uint8_t sw) {
 	_multiplexSwitch = sw;
 }
 
-void Accessory1::switchMultiplexer() {
+void AccessoryOne::switchMultiplexer() {
 	if (_multiplexI2C == 0)
 		return; // No multiplexer set
 	sendMultiSwitch(_multiplexI2C, _multiplexSwitch);
 }
 
-void Accessory1::switchMultiplexer(uint8_t iic, uint8_t sw) {
+void AccessoryOne::switchMultiplexer(uint8_t iic, uint8_t sw) {
 	if (sw >= 8)
 		return;
 #if defined(TWCR)
@@ -113,7 +113,7 @@ void Accessory1::switchMultiplexer(uint8_t iic, uint8_t sw) {
 /*
  * public function to read data
  */
-boolean Accessory1::readData() {
+boolean AccessoryOne::readData() {
 	switchMultiplexer();
 
 	if (_burstRead()) {
@@ -122,11 +122,11 @@ boolean Accessory1::readData() {
 	return false;
 }
 
-uint8_t* Accessory1::getDataArray() {
+uint8_t* AccessoryOne::getDataArray() {
 	return _dataarray;
 }
 
-void Accessory1::initBytes() {
+void AccessoryOne::initBytes() {
 	//Serial.println("Init Periph..");
 	_writeRegister(0xF0, 0x55);
 	_writeRegister(0xFB, 0x00);
@@ -143,20 +143,20 @@ void Accessory1::initBytes() {
 		_writeRegister(0xF0, 0xAA); // enable enc mode?
 		delay(90);
 
-		Accessory1::_burstWriteWithAddress(0x40, _key_table_1, 8);
-		Accessory1::_burstWriteWithAddress(0x48, _key_table_1 + 0x8, 8);
+		AccessoryOne::_burstWriteWithAddress(0x40, _key_table_1, 8);
+		AccessoryOne::_burstWriteWithAddress(0x48, _key_table_1 + 0x8, 8);
 		delay(100);
 
 		//_writeRegister(0x40, 0x00);
 	}
 }
 
-void Accessory1::setDataArray(uint8_t data[6]) {
+void AccessoryOne::setDataArray(uint8_t data[6]) {
 	for (int i = 0; i < 6; i++)
 		_dataarray[i] = data[i];
 }
 
-int Accessory1::decodeInt(uint8_t mmsbbyte, uint8_t mmsbstart, uint8_t mmsbend,
+int AccessoryOne::decodeInt(uint8_t mmsbbyte, uint8_t mmsbstart, uint8_t mmsbend,
 		uint8_t msbbyte, uint8_t msbstart, uint8_t msbend, uint8_t csbbyte,
 		uint8_t csbstart, uint8_t csbend, uint8_t lsbbyte, uint8_t lsbstart,
 		uint8_t lsbend) {
@@ -207,7 +207,7 @@ int Accessory1::decodeInt(uint8_t mmsbbyte, uint8_t mmsbstart, uint8_t mmsbend,
 	return analog;
 }
 
-int Accessory1::decodeInt(uint8_t msbbyte, uint8_t msbstart, uint8_t msbend,
+int AccessoryOne::decodeInt(uint8_t msbbyte, uint8_t msbstart, uint8_t msbend,
 		uint8_t csbbyte, uint8_t csbstart, uint8_t csbend, uint8_t lsbbyte,
 		uint8_t lsbstart, uint8_t lsbend) {
 // 5 bit int split across 3 bytes. what... the... fuck... nintendo...
@@ -246,7 +246,7 @@ int Accessory1::decodeInt(uint8_t msbbyte, uint8_t msbstart, uint8_t msbend,
 	return analog;
 }
 
-bool Accessory1::decodeBit(uint8_t byte, uint8_t bit, bool activeLow) {
+bool AccessoryOne::decodeBit(uint8_t byte, uint8_t bit, bool activeLow) {
 	if (byte > 5)
 		return false;
 	uint8_t swb = _dataarray[byte];
@@ -254,7 +254,7 @@ bool Accessory1::decodeBit(uint8_t byte, uint8_t bit, bool activeLow) {
 	return activeLow ? (!sw) : (sw);
 }
 
-void Accessory1::begin() {
+void AccessoryOne::begin() {
 #if defined(TWCR)
 	if (TWCR == 0)
 #endif
@@ -270,7 +270,7 @@ void Accessory1::begin() {
 
 	initBytes();
 	identifyController();
-	if (getControllerType() == DrawsomeTablet) {
+	if (getControllerTypeOne() == DrawsomeTabletOne) {
 		initBytesDrawsome();
 	}
 	delay(100);
@@ -279,7 +279,7 @@ void Accessory1::begin() {
 	_burstRead();
 }
 
-boolean Accessory1::_burstRead(uint8_t addr) {
+boolean AccessoryOne::_burstRead(uint8_t addr) {
 	//int readAmnt = dataArraySize;
 	uint8_t err = 0;
 	bool dataBad = true;
@@ -382,7 +382,7 @@ boolean Accessory1::_burstRead(uint8_t addr) {
 	return !dataBad && (err == 0);
 }
 
-void Accessory1::_writeRegister(uint8_t reg, uint8_t value) {
+void AccessoryOne::_writeRegister(uint8_t reg, uint8_t value) {
 	//Serial.print("W ");
 	//Serial.print(reg,HEX);
 	//Serial.print(": ");
@@ -405,7 +405,7 @@ void Accessory1::_writeRegister(uint8_t reg, uint8_t value) {
 
 }
 
-void Accessory1::_burstWriteWithAddress(uint8_t addr, uint8_t* arr,
+void AccessoryOne::_burstWriteWithAddress(uint8_t addr, uint8_t* arr,
 		uint8_t size) {
 	//Serial.print("W ");
 	//Serial.print(addr,HEX);
@@ -432,7 +432,7 @@ void Accessory1::_burstWriteWithAddress(uint8_t addr, uint8_t* arr,
 
 }
 
-void Accessory1::reset() {
+void AccessoryOne::reset() {
 #if defined(ARDUINO_ARCH_ESP32)
 		Wire1.begin(SDA,SCL,10000);
 #else
@@ -441,11 +441,11 @@ void Accessory1::reset() {
 #endif
 }
 
-void Accessory1::enableEncryption(bool enc) {
+void AccessoryOne::enableEncryption(bool enc) {
 	_encrypted = enc;
 }
 
-int Accessory1::smap(int16_t val, int16_t aMax, int16_t aMid, int16_t aMin,
+int AccessoryOne::smap(int16_t val, int16_t aMax, int16_t aMid, int16_t aMin,
 		int16_t sMax, int16_t sZero, int16_t sMin) {
 	int mapv = sZero;
 	if (val > aMid) {
@@ -458,32 +458,32 @@ int Accessory1::smap(int16_t val, int16_t aMax, int16_t aMid, int16_t aMin,
 	return mapv;
 }
 
-uint8_t Accessory1::decryptByte(uint8_t byte, uint8_t address) {
+uint8_t AccessoryOne::decryptByte(uint8_t byte, uint8_t address) {
 //return (byte ^ _key_table_1[address % 8]) + _key_table_1[(address % 8)+0x08];
 	return (byte ^ 0x97) + 0x97;
 }
 
-void Accessory1::printInputs(Stream& stream) {
-	switch (getControllerType()) {
-	case WIICLASSIC:
+void AccessoryOne::printInputs(Stream& stream) {
+	switch (getControllerTypeOne()) {
+	case WIICLASSICONE:
 		printInputsClassic(stream);
 		break;
-	case GuitarHeroController:
+	case GuitarHeroControllerOne:
 		printInputsGuitar(stream);
 		break;
-	case GuitarHeroWorldTourDrums:
+	case GuitarHeroWorldTourDrumsOne:
 		printInputsDrums(stream);
 		break;
-	case DrumController:
+	case DrumControllerOne:
 		printInputsDrums(stream);
 		break;
-	case DrawsomeTablet:
+	case DrawsomeTabletOne:
 		printInputsDrawsome(stream);
 		break;
-	case Turntable:
+	case TurntableOne:
 		printInputsDj(stream);
 		break;
-	case NUNCHUCK:
+	case NUNCHUCKONE:
 		printInputsNunchuck(stream);
 		break;
 	default:
@@ -493,27 +493,27 @@ void Accessory1::printInputs(Stream& stream) {
 	}
 }
 
-uint8_t * Accessory1::getValues() {
-	switch (getControllerType()) {
-	case WIICLASSIC:
+uint8_t * AccessoryOne::getValues() {
+	switch (getControllerTypeOne()) {
+	case WIICLASSICONE:
 		getValuesClassic(values);
 		break;
-	case GuitarHeroController:
+	case GuitarHeroControllerOne:
 		getValuesGuitar(values);
 		break;
-	case GuitarHeroWorldTourDrums:
+	case GuitarHeroWorldTourDrumsOne:
 		getValuesDrums(values);
 		break;
-	case DrumController:
+	case DrumControllerOne:
 		getValuesDrums(values);
 		break;
-	case DrawsomeTablet:
+	case DrawsomeTabletOne:
 		getValuesDrawsome(values);
 		break;
-	case Turntable:
+	case TurntableOne:
 		getValuesDj(values);
 		break;
-	case NUNCHUCK:
+	case NUNCHUCKONE:
 	default:
 		getValuesNunchuck(values);
 		break;

@@ -1,7 +1,7 @@
-#ifndef Nunchuck_h
-#define Nunchuck_h
+#ifndef NunchuckOne_h
+#define NunchuckOne_h
 
-#include "Accessory1.h"
+#include "AccessoryOne.h"
 
 // see http://wiibrew.org/wiki/Wiimote/Extension_Nunchuck
 #define joyXBytes     WII_UNUSED, 0, 0, WII_UNUSED ,0   , 0   , WII_BYTE0, WII_BIT0, WII_BIT7
@@ -13,7 +13,7 @@
 #define buttonCBits   WII_BYTE5,WII_BIT1,true
 #define buttonZBits   WII_BYTE5,WII_BIT0,true
 
-class Nunchuck
+class NunchuckOne
 {
 public:
 	//Nunchuck();

@@ -1,65 +1,65 @@
-#include "Accessory1.h"
+#include "AccessoryOne.h"
 
-int Accessory1::getCrossfadeSlider() {
+int AccessoryOne::getCrossfadeSlider() {
 	return decodeInt(crossfadeSliderBytes); 
 }
 
 
-int Accessory1::getEffectDial() {
+int AccessoryOne::getEffectDial() {
 	return decodeInt(effectDialBytes); 
 }
 
 
-int Accessory1::getStickX() {
+int AccessoryOne::getStickX() {
 	return decodeInt(stickXBytes); 
 }
 
-int Accessory1::getStickY() {
+int AccessoryOne::getStickY() {
 	return decodeInt(stickYBytes); 
 }
-int Accessory1::getRightDJTable() {
+int AccessoryOne::getRightDJTable() {
 	return decodeInt(rightDJTableBytes);
 }
 
-int Accessory1::getLeftDJTable() {
+int AccessoryOne::getLeftDJTable() {
 	return decodeInt(leftDJTableBytes);
 }
 
-int Accessory1::getEuphoriaButton() {
+int AccessoryOne::getEuphoriaButton() {
 	return decodeBit(euphoriaButtonBytes); 
 }
-int Accessory1::getPlusButton() {
+int AccessoryOne::getPlusButton() {
 	return decodeBit(plusButtonBytes); 
 }
-int Accessory1::getMinusButton() {
+int AccessoryOne::getMinusButton() {
 	return decodeBit(minusButtonBytes); 
 }
-int Accessory1::getLeftGreenButton() {
+int AccessoryOne::getLeftGreenButton() {
 	return decodeBit(leftGreenButtonBytes); 
 }
 
-int Accessory1::getLeftRedButton() {
+int AccessoryOne::getLeftRedButton() {
 	return decodeBit(leftRedButtonBytes); 
 }
 
-int Accessory1::getLeftBlueButton() {
+int AccessoryOne::getLeftBlueButton() {
 	return decodeBit(leftBlueButtonBytes); 
 }
 
-int Accessory1::getRightGreenButton() {
+int AccessoryOne::getRightGreenButton() {
 	return decodeBit(rightGreenButtonBytes); 
 }
 
-int Accessory1::getRightRedButton() {
+int AccessoryOne::getRightRedButton() {
 	return decodeBit(rightRedButtonBytes); 
 }
 
 
-int Accessory1::getRightBlueButton() {
+int AccessoryOne::getRightBlueButton() {
 	return decodeBit(rightBlueButtonBytes); 
 }
 
-void  Accessory1::getValuesDj( uint8_t * values){
+void  AccessoryOne::getValuesDj( uint8_t * values){
 	values[0]=map(getCrossfadeSlider(),0,255,0,256);
 	values[1]=map(getEffectDial(),0,255,0,256);
 	values[2]=map(getStickX(),0,255,0,256);
@@ -89,7 +89,7 @@ void  Accessory1::getValuesDj( uint8_t * values){
 	}
 }
 
-void Accessory1::printInputsDj(Stream& stream) {
+void AccessoryOne::printInputsDj(Stream& stream) {
 	char st[100];
 	sprintf(st," crossfade slider: %4d | effect dial: %4d | stick x: %4d | stick y: %4d | right DJTable: %4d | left DJTable: %4d |",getCrossfadeSlider(),getEffectDial(),getStickX(),getStickY(),getRightDJTable(),getLeftDJTable());
 	stream.print(st);

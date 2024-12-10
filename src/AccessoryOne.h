@@ -1,17 +1,17 @@
-#ifndef Accessory1_h
-#define Accessory1_h
+#ifndef AccessoryOne_h
+#define AccessoryOne_h
 
 #include "Arduino.h"
 
 //
 
-#include <Classic.h>
-#include <DJTable.h>
-#include <Nunchuck.h>
+#include <ClassicOne.h>
+#include <DJTableOne.h>
+#include <NunchuckOne.h>
 
-#include <Drawsome.h>
-#include <Guitar.h>
-#include <Drums.h>
+#include <DrawsomeOne.h>
+#include <GuitarOne.h>
+#include <DrumsOne.h>
 
 #if defined(ARDUINO_ARCH_ESP32)
 //#include "ESP32Servo.h"
@@ -42,27 +42,27 @@
 #define WII_VALUES_ARRAY_SIZE 19
 #define dataArraySize 6
 
-typedef enum _controllertype {
-	Unknown,
-	NUNCHUCK,
-	WIICLASSIC,
-	GuitarHeroController,
-	GuitarHeroWorldTourDrums,
-	DrumController,
-	DrawsomeTablet,
-	Turntable
-} ControllerType;
+typedef enum _controllertypeOne {
+	UnknownOne,
+	NUNCHUCKONE,
+	WIICLASSICONE,
+	GuitarHeroControllerOne,
+	GuitarHeroWorldTourDrumsOne,
+	DrumControllerOne,
+	DrawsomeTabletOne,
+	TurntableOne
+} ControllerTypeOne;
 
-class Accessory1: public Classic,
-		public DJTable,
-		public Nunchuck,
-		public Drawsome,
-		public Drums,
-		public Guitar {
+class AccessoryOne: public ClassicOne,
+		public DJTableOne,
+		public NunchuckOne,
+		public DrawsomeOne,
+		public DrumsOne,
+		public GuitarOne {
 public:
-	Accessory1();
+	AccessoryOne();
 	void reset();
-	ControllerType type;
+	ControllerTypeOne type;
 
 	uint8_t* getDataArray();
 	void setDataArray(uint8_t data[6]);
@@ -93,7 +93,7 @@ public:
 	uint8_t getMapCount();
 	void removeMaps();
 	void removeMap(uint8_t id);
-	ControllerType getControllerType();
+	ControllerTypeOne getControllerTypeOne();
 
 	static int smap(int16_t val, int16_t aMax, int16_t aMid, int16_t aMin,
 			int16_t sMax, int16_t sZero, int16_t sMin);
@@ -231,7 +231,7 @@ protected:
 	uint8_t decryptByte(uint8_t byte, uint8_t address);
 	void initBytes();
 
-	ControllerType identifyController();
+	ControllerTypeOne identifyController();
 	boolean _burstRead(uint8_t addr = 0);
 	void _writeRegister(uint8_t reg, uint8_t value);
 	void _burstWriteWithAddress(uint8_t addr, uint8_t* arr, uint8_t size);

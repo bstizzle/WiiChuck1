@@ -1,7 +1,7 @@
-#ifndef DJTable_h
-#define DJTable_h
+#ifndef DJTableOne_h
+#define DJTableOne_h
 
-#include "Accessory1.h"
+#include "AccessoryOne.h"
 
 #define crossfadeSliderBytes	WII_UNUSED,	 0,	 0,   WII_UNUSED,		0,	 0, WII_BYTE2,  WII_BIT1, WII_BIT4
 #define effectDialBytes	WII_UNUSED,	 0,	 0,   WII_BYTE2 ,		5,	 6, WII_BYTE3,  WII_BIT5, WII_BIT7
@@ -23,7 +23,7 @@
 #define rightRedButtonBytes	WII_BYTE4,WII_BIT1,true
 #define rightBlueButtonBytes	WII_BYTE5,WII_BIT2,true
 
-class DJTable
+class DJTableOne
 {
 public:
 	virtual void printInputsDj(Stream& stream = Serial)=0;

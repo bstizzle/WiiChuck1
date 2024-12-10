@@ -1,7 +1,7 @@
-#ifndef Guitar_h
-#define Guitar_h
+#ifndef GuitarOne_h
+#define GuitarOne_h
 
-#include "Accessory1.h"
+#include "AccessoryOne.h"
 
 #define stickXBytes	WII_UNUSED,     0,     0,   WII_UNUSED,        0,     0, WII_BYTE0,  WII_BIT0, WII_BIT5
 #define stickYBytes	WII_UNUSED,     0,     0,   WII_UNUSED,        0,     0, WII_BYTE1,  WII_BIT0, WII_BIT5
@@ -21,7 +21,7 @@
 #define strumUpBytes	 WII_BYTE5,WII_BIT0,true
 #define strumDownBytes	 WII_BYTE4,WII_BIT6,true
 
-class Guitar
+class GuitarOne
 {
 	public:
 	virtual void printInputsGuitar(Stream& stream = Serial);

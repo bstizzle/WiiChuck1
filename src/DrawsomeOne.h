@@ -1,14 +1,14 @@
-#ifndef Drawsome_h
-#define Drawsome_h
+#ifndef DrawsomeOne_h
+#define DrawsomeOne_h
 
-#include "Accessory1.h"
+#include "AccessoryOne.h"
 
 #define penYPositionBytes	WII_UNUSED, 0, 0, WII_BYTE3, WII_BIT0, WII_BIT5, WII_BYTE2, WII_BIT0, WII_BIT5
 #define penXPositionBytes	WII_UNUSED, 0, 0, WII_BYTE1, WII_BIT0, WII_BIT5  , WII_BYTE0, WII_BIT0, WII_BIT5
 #define penPressureBytes	WII_UNUSED, 0, 0, WII_BYTE5, WII_BIT0, WII_BIT3 ,WII_BYTE4   , 0   , 5
 #define penContactBytes	WII_BYTE5,WII_BIT7,true
 
-class Drawsome
+class DrawsomeOne
 {
 	public:
 	virtual void printInputsDrawsome(Stream& stream = Serial);
