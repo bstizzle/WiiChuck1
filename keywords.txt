@@ -7,7 +7,7 @@
 #######################################
 
 # Library
-WiiChuck	KEYWORD1
+WiiChuck1	KEYWORD1
 
 # Controller Types
 Nunchuck	KEYWORD1
