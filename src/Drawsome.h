@@ -1,7 +1,7 @@
 #ifndef Drawsome_h
 #define Drawsome_h
 
-#include "Accessory.h"
+#include "Accessory1.h"
 
 #define penYPositionBytes	WII_UNUSED, 0, 0, WII_BYTE3, WII_BIT0, WII_BIT5, WII_BYTE2, WII_BIT0, WII_BIT5
 #define penXPositionBytes	WII_UNUSED, 0, 0, WII_BYTE1, WII_BIT0, WII_BIT5  , WII_BYTE0, WII_BIT0, WII_BIT5

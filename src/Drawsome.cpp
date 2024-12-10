@@ -1,6 +1,6 @@
-#include "Accessory.h"
+#include "Accessory1.h"
 
-void Accessory::initBytesDrawsome() {
+void Accessory1::initBytesDrawsome() {
 	Serial.println("Drawesome Init");
 
 	// Enable Encrypted Mode.
@@ -31,7 +31,7 @@ void Accessory::initBytesDrawsome() {
 	delay(100);
 }
 
-void Accessory::getValuesDrawsome(uint8_t * values) {
+void Accessory1::getValuesDrawsome(uint8_t * values) {
 	values[0] = map(getPenXPosition(), 0, 64, 0, 256);
 	values[1] = map(getPenYPosition(), 0, 64, 0, 256);
 	values[2] = map(getPenPressure(), 0, 32, 0, 256);
@@ -61,7 +61,7 @@ void Accessory::getValuesDrawsome(uint8_t * values) {
 	}
 }
 
-void Accessory::printInputsDrawsome(Stream& stream) {
+void Accessory1::printInputsDrawsome(Stream& stream) {
 	char st[100];
 	stream.print("Drawsome ");
 	sprintf(st, "  PenX: %4d  | PenY: %4d | Force: %4d | pen?: ",
@@ -83,18 +83,18 @@ void Accessory::printInputsDrawsome(Stream& stream) {
 	Serial.print(' ');
 }
 
-int Accessory::getPenXPosition() {
+int Accessory1::getPenXPosition() {
 	return decodeInt(penXPositionBytes);
 }
 
-int Accessory::getPenYPosition() {
+int Accessory1::getPenYPosition() {
 	return decodeInt(penYPositionBytes);
 }
 
-int Accessory::getPenPressure() {
+int Accessory1::getPenPressure() {
 	return decodeInt(penPressureBytes);
 }
 
-int Accessory::getPenContact() {
+int Accessory1::getPenContact() {
 	return decodeBit(penContactBytes);
 }

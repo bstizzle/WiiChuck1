@@ -1,17 +1,17 @@
-#include "Accessory.h"
+#include "Accessory1.h"
 #include <Wire.h>
 
-Accessory::Accessory() {
+Accessory1::Accessory1() {
 	type = NUNCHUCK;
 }
 /**
  * Reads the device type from the controller
  */
-ControllerType Accessory::getControllerType() {
+ControllerType Accessory1::getControllerType() {
 	return type;
 }
 
-ControllerType Accessory::identifyController() {
+ControllerType Accessory1::identifyController() {
 	//Serial.println("Reading periph bytes");
 	_burstRead(0xfa);
 	//printInputs(Serial);
@@ -67,7 +67,7 @@ ControllerType Accessory::identifyController() {
 	return Unknown;
 }
 
-void Accessory::sendMultiSwitch(uint8_t iic, uint8_t sw) {
+void Accessory1::sendMultiSwitch(uint8_t iic, uint8_t sw) {
 	uint8_t err = 0;
 	int i = 0;
 	for (; i < 10; i++) {
@@ -85,7 +85,7 @@ void Accessory::sendMultiSwitch(uint8_t iic, uint8_t sw) {
 
 }
 
-void Accessory::addMultiplexer(uint8_t iic, uint8_t sw) {
+void Accessory1::addMultiplexer(uint8_t iic, uint8_t sw) {
 	if (sw >= 8)
 		return;
 
@@ -93,13 +93,13 @@ void Accessory::addMultiplexer(uint8_t iic, uint8_t sw) {
 	_multiplexSwitch = sw;
 }
 
-void Accessory::switchMultiplexer() {
+void Accessory1::switchMultiplexer() {
 	if (_multiplexI2C == 0)
 		return; // No multiplexer set
 	sendMultiSwitch(_multiplexI2C, _multiplexSwitch);
 }
 
-void Accessory::switchMultiplexer(uint8_t iic, uint8_t sw) {
+void Accessory1::switchMultiplexer(uint8_t iic, uint8_t sw) {
 	if (sw >= 8)
 		return;
 #if defined(TWCR)
@@ -113,7 +113,7 @@ void Accessory::switchMultiplexer(uint8_t iic, uint8_t sw) {
 /*
  * public function to read data
  */
-boolean Accessory::readData() {
+boolean Accessory1::readData() {
 	switchMultiplexer();
 
 	if (_burstRead()) {
@@ -122,11 +122,11 @@ boolean Accessory::readData() {
 	return false;
 }
 
-uint8_t* Accessory::getDataArray() {
+uint8_t* Accessory1::getDataArray() {
 	return _dataarray;
 }
 
-void Accessory::initBytes() {
+void Accessory1::initBytes() {
 	//Serial.println("Init Periph..");
 	_writeRegister(0xF0, 0x55);
 	_writeRegister(0xFB, 0x00);
@@ -143,20 +143,20 @@ void Accessory::initBytes() {
 		_writeRegister(0xF0, 0xAA); // enable enc mode?
 		delay(90);
 
-		Accessory::_burstWriteWithAddress(0x40, _key_table_1, 8);
-		Accessory::_burstWriteWithAddress(0x48, _key_table_1 + 0x8, 8);
+		Accessory1::_burstWriteWithAddress(0x40, _key_table_1, 8);
+		Accessory1::_burstWriteWithAddress(0x48, _key_table_1 + 0x8, 8);
 		delay(100);
 
 		//_writeRegister(0x40, 0x00);
 	}
 }
 
-void Accessory::setDataArray(uint8_t data[6]) {
+void Accessory1::setDataArray(uint8_t data[6]) {
 	for (int i = 0; i < 6; i++)
 		_dataarray[i] = data[i];
 }
 
-int Accessory::decodeInt(uint8_t mmsbbyte, uint8_t mmsbstart, uint8_t mmsbend,
+int Accessory1::decodeInt(uint8_t mmsbbyte, uint8_t mmsbstart, uint8_t mmsbend,
 		uint8_t msbbyte, uint8_t msbstart, uint8_t msbend, uint8_t csbbyte,
 		uint8_t csbstart, uint8_t csbend, uint8_t lsbbyte, uint8_t lsbstart,
 		uint8_t lsbend) {
@@ -207,7 +207,7 @@ int Accessory::decodeInt(uint8_t mmsbbyte, uint8_t mmsbstart, uint8_t mmsbend,
 	return analog;
 }
 
-int Accessory::decodeInt(uint8_t msbbyte, uint8_t msbstart, uint8_t msbend,
+int Accessory1::decodeInt(uint8_t msbbyte, uint8_t msbstart, uint8_t msbend,
 		uint8_t csbbyte, uint8_t csbstart, uint8_t csbend, uint8_t lsbbyte,
 		uint8_t lsbstart, uint8_t lsbend) {
 // 5 bit int split across 3 bytes. what... the... fuck... nintendo...
@@ -246,7 +246,7 @@ int Accessory::decodeInt(uint8_t msbbyte, uint8_t msbstart, uint8_t msbend,
 	return analog;
 }
 
-bool Accessory::decodeBit(uint8_t byte, uint8_t bit, bool activeLow) {
+bool Accessory1::decodeBit(uint8_t byte, uint8_t bit, bool activeLow) {
 	if (byte > 5)
 		return false;
 	uint8_t swb = _dataarray[byte];
@@ -254,7 +254,7 @@ bool Accessory::decodeBit(uint8_t byte, uint8_t bit, bool activeLow) {
 	return activeLow ? (!sw) : (sw);
 }
 
-void Accessory::begin() {
+void Accessory1::begin() {
 #if defined(TWCR)
 	if (TWCR == 0)
 #endif
@@ -279,7 +279,7 @@ void Accessory::begin() {
 	_burstRead();
 }
 
-boolean Accessory::_burstRead(uint8_t addr) {
+boolean Accessory1::_burstRead(uint8_t addr) {
 	//int readAmnt = dataArraySize;
 	uint8_t err = 0;
 	bool dataBad = true;
@@ -382,7 +382,7 @@ boolean Accessory::_burstRead(uint8_t addr) {
 	return !dataBad && (err == 0);
 }
 
-void Accessory::_writeRegister(uint8_t reg, uint8_t value) {
+void Accessory1::_writeRegister(uint8_t reg, uint8_t value) {
 	//Serial.print("W ");
 	//Serial.print(reg,HEX);
 	//Serial.print(": ");
@@ -405,7 +405,7 @@ void Accessory::_writeRegister(uint8_t reg, uint8_t value) {
 
 }
 
-void Accessory::_burstWriteWithAddress(uint8_t addr, uint8_t* arr,
+void Accessory1::_burstWriteWithAddress(uint8_t addr, uint8_t* arr,
 		uint8_t size) {
 	//Serial.print("W ");
 	//Serial.print(addr,HEX);
@@ -432,7 +432,7 @@ void Accessory::_burstWriteWithAddress(uint8_t addr, uint8_t* arr,
 
 }
 
-void Accessory::reset() {
+void Accessory1::reset() {
 #if defined(ARDUINO_ARCH_ESP32)
 		Wire1.begin(SDA,SCL,10000);
 #else
@@ -441,11 +441,11 @@ void Accessory::reset() {
 #endif
 }
 
-void Accessory::enableEncryption(bool enc) {
+void Accessory1::enableEncryption(bool enc) {
 	_encrypted = enc;
 }
 
-int Accessory::smap(int16_t val, int16_t aMax, int16_t aMid, int16_t aMin,
+int Accessory1::smap(int16_t val, int16_t aMax, int16_t aMid, int16_t aMin,
 		int16_t sMax, int16_t sZero, int16_t sMin) {
 	int mapv = sZero;
 	if (val > aMid) {
@@ -458,12 +458,12 @@ int Accessory::smap(int16_t val, int16_t aMax, int16_t aMid, int16_t aMin,
 	return mapv;
 }
 
-uint8_t Accessory::decryptByte(uint8_t byte, uint8_t address) {
+uint8_t Accessory1::decryptByte(uint8_t byte, uint8_t address) {
 //return (byte ^ _key_table_1[address % 8]) + _key_table_1[(address % 8)+0x08];
 	return (byte ^ 0x97) + 0x97;
 }
 
-void Accessory::printInputs(Stream& stream) {
+void Accessory1::printInputs(Stream& stream) {
 	switch (getControllerType()) {
 	case WIICLASSIC:
 		printInputsClassic(stream);
@@ -493,7 +493,7 @@ void Accessory::printInputs(Stream& stream) {
 	}
 }
 
-uint8_t * Accessory::getValues() {
+uint8_t * Accessory1::getValues() {
 	switch (getControllerType()) {
 	case WIICLASSIC:
 		getValuesClassic(values);

@@ -1,5 +1,5 @@
-#ifndef Accessory_h
-#define Accessory_h
+#ifndef Accessory1_h
+#define Accessory1_h
 
 #include "Arduino.h"
 
@@ -53,14 +53,14 @@ typedef enum _controllertype {
 	Turntable
 } ControllerType;
 
-class Accessory: public Classic,
+class Accessory1: public Classic,
 		public DJTable,
 		public Nunchuck,
 		public Drawsome,
 		public Drums,
 		public Guitar {
 public:
-	Accessory();
+	Accessory1();
 	void reset();
 	ControllerType type;
 

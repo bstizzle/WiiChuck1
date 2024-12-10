@@ -1,7 +1,7 @@
 #ifndef DJTable_h
 #define DJTable_h
 
-#include "Accessory.h"
+#include "Accessory1.h"
 
 #define crossfadeSliderBytes	WII_UNUSED,	 0,	 0,   WII_UNUSED,		0,	 0, WII_BYTE2,  WII_BIT1, WII_BIT4
 #define effectDialBytes	WII_UNUSED,	 0,	 0,   WII_BYTE2 ,		5,	 6, WII_BYTE3,  WII_BIT5, WII_BIT7

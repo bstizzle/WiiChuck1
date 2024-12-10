@@ -1,7 +1,7 @@
 #ifndef Drums_h
 #define Drums_h
 
-#include "Accessory.h"
+#include "Accessory1.h"
 
 #define stickXBytes	WII_UNUSED,     0,     0,   WII_UNUSED,        0,     0, WII_BYTE0,  WII_BIT0, WII_BIT5
 #define stickYBytes	WII_UNUSED,     0,     0,   WII_UNUSED,        0,     0, WII_BYTE1,  WII_BIT0, WII_BIT5

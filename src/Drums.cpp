@@ -1,72 +1,72 @@
-#include "Accessory.h"
+#include "Accessory1.h"
 
 
 
-int Accessory::getStickXDrums() {
+int Accessory1::getStickXDrums() {
 	return decodeInt(stickXBytes); 
 }
 
 
-int Accessory::getStickYDrums() {
+int Accessory1::getStickYDrums() {
 	return decodeInt(stickYBytes); 
 }
 
-int Accessory::getSoftnessDataFor() {
+int Accessory1::getSoftnessDataFor() {
 	return decodeInt(softnessDataForBytes); 
 }
 
-int Accessory::getSoftness() {
+int Accessory1::getSoftness() {
 	return decodeInt(softnessBytes); 
 }
 
-int Accessory::getHighHatDataFlag() {
+int Accessory1::getHighHatDataFlag() {
 	return decodeBit(highHatDataFlagBytes); 
 }
 
-int Accessory::getSoftnessDataFlag() {
+int Accessory1::getSoftnessDataFlag() {
 	return decodeBit(softnessDataFlagBytes); 
 }
 
 
-int Accessory::getMinusButtonDrums() {
+int Accessory1::getMinusButtonDrums() {
 	return decodeBit(minusButtonBytes); 
 }
 
 
-int Accessory::getPlusButtonDrums() {
+int Accessory1::getPlusButtonDrums() {
 	return decodeBit(plusButtonBytes); 
 }
 
 
-int Accessory::getOrangeDrum() {
+int Accessory1::getOrangeDrum() {
 	return decodeBit(orangeDrumBytes); 
 }
 
 
-int Accessory::getRedDrum() {
+int Accessory1::getRedDrum() {
 	return decodeBit(redDrumBytes); 
 }
 
 
-int Accessory::getYellowDrum() {
+int Accessory1::getYellowDrum() {
 	return decodeBit(yellowDrumBytes); 
 }
 
 
-int Accessory::getGreenDrum() {
+int Accessory1::getGreenDrum() {
 	return decodeBit(greenDrumBytes); 
 }
 
 
-int Accessory::getBlueDrumm() {
+int Accessory1::getBlueDrumm() {
 	return decodeBit(blueDrummBytes); 
 }
 
-int Accessory::getBassPedal() {
+int Accessory1::getBassPedal() {
 	return decodeBit(bassPedalBytes); 
 }
 
-void Accessory::getValuesDrums(uint8_t * values){
+void Accessory1::getValuesDrums(uint8_t * values){
 	values[0]=map(getCrossfadeSlider(),0,255,0,256);
 	values[1]=map(getEffectDial(),0,255,0,256);
 	values[2]=map(getStickXGuitar(),0,255,0,256);
@@ -97,7 +97,7 @@ void Accessory::getValuesDrums(uint8_t * values){
 }
 
 
-void Accessory::printInputsDrums(Stream& stream) {
+void Accessory1::printInputsDrums(Stream& stream) {
 	char st[100];
 	sprintf(st," stick x: %4d | stick y: %4d | ",getStickXDrums(),getStickYDrums());
 

@@ -1,83 +1,83 @@
-#include "Accessory.h"
+#include "Accessory1.h"
 
-int Accessory::getJoyXLeft() {
+int Accessory1::getJoyXLeft() {
 	return decodeInt(joyXLeftBytes);
 }
 
 
-int Accessory::getJoyXRight() {
+int Accessory1::getJoyXRight() {
 	return decodeInt(joyXRightBytes);
 }
 
-int Accessory::getJoyYLeft() {
+int Accessory1::getJoyYLeft() {
 	return decodeInt(joyYLeftBytes);
 }
 
-int Accessory::getJoyYRight() {
+int Accessory1::getJoyYRight() {
 	return decodeInt(joyYRightBytes);
 }
 
-int Accessory::getTriggerLeft() {
+int Accessory1::getTriggerLeft() {
 	return decodeInt(triggerLeftBytes);
 }
 
-int Accessory::getTriggerRight() {
+int Accessory1::getTriggerRight() {
 	return decodeInt(triggerRightBytes);
 }
-int Accessory::getPadRight() {
+int Accessory1::getPadRight() {
 	return decodeBit(padRightBytes);
 }
 
-int Accessory::getPadDown() {
+int Accessory1::getPadDown() {
 	return decodeBit(padDownBytes);
 }
 
-int Accessory::getPadUp() {
+int Accessory1::getPadUp() {
 	return decodeBit(padUpBytes);
 }
 
-int Accessory::getPadLeft() {
+int Accessory1::getPadLeft() {
 	return decodeBit(padLeftBytes);
 }
-int Accessory::getButtonX() {
+int Accessory1::getButtonX() {
 	return decodeBit(buttonXBytes);
 }
 
-int Accessory::getButtonY() {
+int Accessory1::getButtonY() {
 	return decodeBit(buttonYBytes);
 }
 
-int Accessory::getButtonA() {
+int Accessory1::getButtonA() {
 	return decodeBit(buttonABytes);
 }
 
-int Accessory::getButtonB() {
+int Accessory1::getButtonB() {
 	return decodeBit(buttonBBytes);
 }
 
 
-int Accessory::getButtonMinus() {
+int Accessory1::getButtonMinus() {
 	return decodeBit(buttonMinusBytes);
 }
 
-int Accessory::getButtonHome() {
+int Accessory1::getButtonHome() {
 	return decodeBit(buttonHomeBytes);
 }
 
-int Accessory::getButtonPlus() {
+int Accessory1::getButtonPlus() {
 	return decodeBit(buttonPlusBytes);
 }
 
 
-int Accessory::getButtonZLeft() {
+int Accessory1::getButtonZLeft() {
 	return decodeBit(buttonZLBytes);
 }
 
-int Accessory::getButtonZRight() {
+int Accessory1::getButtonZRight() {
 	return decodeBit(buttonZRBytes);
 }
 
-void  Accessory::getValuesClassic( uint8_t * values){
+void  Accessory1::getValuesClassic( uint8_t * values){
 	values[0]=map(getJoyXLeft(),0,64,0,256);
 	values[1]=map(getJoyYLeft(),0,64,0,256);
 	values[2]=map(getJoyXRight(),0,32,0,256);
@@ -108,7 +108,7 @@ void  Accessory::getValuesClassic( uint8_t * values){
 }
 
 
-void Accessory::printInputsClassic(Stream& stream) {
+void Accessory1::printInputsClassic(Stream& stream) {
 	char st[100];
 	sprintf(st,"Classic jxL: %4d | jxR: %4d | jyL: %4d | jyR: %4d | trigL: %4d | trigR: %4d |",getJoyXLeft(),getJoyXRight(),getJoyYLeft(),getJoyYRight(),getTriggerLeft(),getTriggerRight());
 	stream.print(st);

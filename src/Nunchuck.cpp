@@ -1,34 +1,34 @@
-#include "Accessory.h"
+#include "Accessory1.h"
 
-int Accessory::getJoyX() {
+int Accessory1::getJoyX() {
 	return decodeInt(joyXBytes);
 }
-int Accessory::getJoyY() {
+int Accessory1::getJoyY() {
 	return decodeInt(joyYBytes);
 }
 
-float Accessory::getRollAngle() {
+float Accessory1::getRollAngle() {
 	return atan2((double) getAccelX() - 511, (double) getAccelZ() - 511) * 180.0 / PI;
 }
-float Accessory::getPitchAngle() {
+float Accessory1::getPitchAngle() {
 	return -atan2((double) getAccelY() - 511, (double) getAccelZ() - 511) * 180.0 / PI;
 }
-int Accessory::getAccelX() {
+int Accessory1::getAccelX() {
 	return decodeInt(accelXBytes);
 }
-int Accessory::getAccelY() {
+int Accessory1::getAccelY() {
 	return decodeInt(accelYBytes);
 }
-int Accessory::getAccelZ() {
+int Accessory1::getAccelZ() {
 	return decodeInt(accelZBytes);
 }
-boolean Accessory::getButtonC() {
+boolean Accessory1::getButtonC() {
 	return decodeBit(buttonCBits);
 }
-boolean Accessory::getButtonZ() {
+boolean Accessory1::getButtonZ() {
 	return decodeBit(buttonZBits);
 }
-void  Accessory::getValuesNunchuck( uint8_t * values){
+void  Accessory1::getValuesNunchuck( uint8_t * values){
 	values[0]=map(getJoyX(),0,255,0,255);
 	values[1]=map(getJoyY(),0,255,0,255);
 	values[2]=map(getRollAngle(),0,1024,0,256);
@@ -57,7 +57,7 @@ void  Accessory::getValuesNunchuck( uint8_t * values){
 		}
 	}
 }
-void Accessory::printInputsNunchuck(Stream& stream) {
+void Accessory1::printInputsNunchuck(Stream& stream) {
 	char st[100];
 
 	stream.print("NUNCHUCK ");

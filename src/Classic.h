@@ -1,7 +1,7 @@
 #ifndef Classic_h
 #define Classic_h
 
-#include "Accessory.h"
+#include "Accessory1.h"
 
 #define joyXLeftBytes	WII_UNUSED,     0,     0,   WII_UNUSED,        0,     0, WII_BYTE0,  WII_BIT0, WII_BIT5
 #define joyXRightBytes	WII_BYTE0,   WII_BIT6,  WII_BIT7,    WII_BYTE1,     WII_BIT6,  WII_BIT7, WII_BYTE2,  WII_BIT7, WII_BIT7
