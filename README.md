@@ -1,3 +1,6 @@
+# Author Notes
+This is a fork I made of this original library, specifically to use it with a Teensy 4.1 board. To use the multiple SDA/SCL pins on the Teensy, you need to call different Wire objects (Wire, Wire1, Wire2). The current library is unable to do this, so I just rewrote it to use Wire1. If you include this "#include <WiiChuckOne.h>" alongside the original library, you'll be able to use two different inputs.
+
 # WiiChuck
 An Arduino library for talking to every extension controller made for the Wii including the Nunchuk and Classic Controller over I²C.
 
